@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+	http://www.springframework.org/schema/beans/spring-beans-3.0.xsd" >
+
+	<bean id="parentTriangle" class="tw.edu.ntu.Triangle" name="triangle-name"    >
+		<property name="pointA">
+			<ref bean="pointA"/>				
+		</property>
+	
+	</bean>
+ 	
+	<bean id ="triangle1" class="tw.edu.ntu.Triangle" parent="parentTriangle" >
+		<property name="pointB">		
+			<ref bean="pointB"/>
+		</property>
+		<property name="pointC">		
+			<ref bean="pointC"/>
+		</property>
+		
+	</bean>
+
+
+	<bean id ="triangle2" class="tw.edu.ntu.Triangle"  parent="parentTriangle"   >
+		<property name="pointB">		
+			<ref bean="pointB"/>
+		</property>
+	</bean> 
+	
+	
+ 	<bean id="pointA" class="tw.edu.ntu.Point" >
+ 		 <property name="x" value="${pointA.pointX}" />
+ 		<property name="y" value="${pointA.pointY}" /> 
+ 	</bean>
+ 
+ 	<bean id="pointB" class="tw.edu.ntu.Point" >
+ 		<property name="x" value="-10" />
+ 		<property name="y" value="-10" />
+ 	</bean>
+
+ 	<bean id="pointC" class="tw.edu.ntu.Point" >
+ 		<property name="x" value="10" />
+ 		<property name="y" value="10" />
+ 	</bean>
+ 
+ 	<!-- <bean class="tw.edu.ntu.DisplayNameBeanPostProcessor" /> -->
+ 	 <!-- <bean class="tw.edu.ntu.MyBeanFactoryPostProcessor" />-->
+ 	 <bean class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer" >
+ 	 	<property name="locations" value="pointsconfig.properties"></property>
+ 	 </bean>
+</beans>
